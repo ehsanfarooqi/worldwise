@@ -1,10 +1,14 @@
+import { NavLink } from "react-router-dom";
 import PageNav from "../components/PageNav";
+import AppNav from "../components/AppNav";
 
 function Homepage() {
   return (
     <div>
-      <h1>Wrildswise</h1>
       <PageNav />
+      <AppNav />
+      <h1>Wrildswise</h1>
+      <NavLink to="/app">Go to the app</NavLink>
     </div>
   );
 }
