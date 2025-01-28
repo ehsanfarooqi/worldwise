@@ -7,7 +7,7 @@ const CitiesContext = createContext();
 function CitiesProvider({ children }) {
   const [cities, setCites] = useState([]);
   const [isLoading, setIsloading] = useState(false);
-  const [currentCity, setCurrentCity] = useState({});
+  const [currentCity, setCurrentCity] = useState([]);
 
   useEffect(() => {
     async function fetchCities() {
