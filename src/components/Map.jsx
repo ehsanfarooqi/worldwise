@@ -5,26 +5,24 @@ import {
   Marker,
   Popup,
   useMap,
-  useMapEvent,
+  useMapEvents,
 } from "react-leaflet";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useCities } from "../contexts/CitiesContext";
 import { useGeolocation } from "../hooks/useGeolocation";
 import Button from "./Button";
 import styles from "./Map.module.css";
+import useUrlPotion from "../hooks/useUrlPotion";
 
 function Map() {
   const { cities } = useCities();
+  const [mapLat, mapLng] = useUrlPotion();
   const [mapPosition, setMapPostion] = useState([40, 0]);
-  const [searchParms, setSearchParms] = useSearchParams();
   const {
     isLoading: isLoadingPostion,
     position: geoloacationPotion,
     getPosition,
   } = useGeolocation();
-
-  const mapLat = searchParms.get("lat");
-  const mapLng = searchParms.get("lng");
 
   // Change center position effect
   useEffect(() => {
@@ -84,7 +82,7 @@ function ChangeCenter({ position }) {
 function DetectClick() {
   const navigate = useNavigate();
 
-  useMapEvent({
+  useMapEvents({
     click: (e) => navigate(`form?lat=${e.latlng.lat}&lng=${e.latlng.lng}`),
   });
 }
