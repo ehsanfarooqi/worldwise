@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 const BASE_URL = "http://localhost:9000";
 
+// Create Context
 const CitiesContext = createContext();
 
 function CitiesProvider({ children }) {
@@ -9,6 +10,7 @@ function CitiesProvider({ children }) {
   const [isLoading, setIsloading] = useState(false);
   const [currentCity, setCurrentCity] = useState([]);
 
+  // Fetch cities data from fake API
   useEffect(() => {
     async function fetchCities() {
       try {
@@ -25,6 +27,7 @@ function CitiesProvider({ children }) {
     fetchCities();
   }, []);
 
+  // Get current city bei ID
   async function getCity(id) {
     try {
       setIsloading(true);
@@ -38,6 +41,7 @@ function CitiesProvider({ children }) {
     }
   }
 
+  // Create new City
   async function createCity(newCity) {
     try {
       setIsloading(true);
@@ -55,6 +59,7 @@ function CitiesProvider({ children }) {
     }
   }
 
+  // Delete City bei ID
   async function deleteCity(id) {
     try {
       setIsloading(true);
@@ -67,6 +72,7 @@ function CitiesProvider({ children }) {
     }
   }
 
+  // Props
   return (
     <CitiesContext.Provider
       value={{
@@ -83,6 +89,7 @@ function CitiesProvider({ children }) {
   );
 }
 
+// Create useContext hook
 function useCities() {
   const context = useContext(CitiesContext);
   if (context === undefined)

@@ -37,6 +37,7 @@ function Form() {
   const [emoji, setEmoji] = useState("");
   const [geoCodingError, setGeoCodingError] = useState("");
 
+  // Fetch city Geocoding Lan and Lng
   useEffect(() => {
     if (!lat && !lng) return;
 
@@ -65,6 +66,7 @@ function Form() {
     fetchCittyData();
   }, [lat, lng]);
 
+  // Submit form and create new City
   async function handleSubmit(e) {
     e.preventDefault();
 
